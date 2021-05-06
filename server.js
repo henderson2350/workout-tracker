@@ -3,11 +3,12 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require('path')
 const db = require('./models')
+// const routes = require('routes')
 
 const PORT = process.env.PORT || 3000;
 
-const Workout = require("./models/workoutModel.js");
-const Exercise = require("./models/exerciseModel.js");
+// const Workout = require("./models/workoutModel.js");
+// const Exercise = require("./models/exerciseModel.js");
 
 const app = express();
 
@@ -19,29 +20,26 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+app.use(require('./routes/homeRoutes'))
+app.use(require('./routes/apiRoutes/workoutRoutes'))
+
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
-//HOME ROUTES
-app.get('/exercise', (req, res) => {
-    res.sendFile('/Users/clarehenderson/gt/homework/workout-tracker/public/exercise.html')
-})
-
-// app.get('/stats', (req, res) => {
-//     res.sendFile('/Users/clarehenderson/gt/homework/workout-tracker/public/stats.html')
+// app.get('/exercise', (req, res) => {
+//     res.sendFile('/Users/clarehenderson/gt/homework/workout-tracker/public/exercise.html')
 // })
 
-// USER ROUTES
-app.get('/stats', ({body}, res) => {
-    res.sendFile('/Users/clarehenderson/gt/homework/workout-tracker/public/stats.html')
-    db.Workout.find({})
-        .then(dbWorkout => {
-            console.log(dbWorkout)
-            res.json(dbWorkout)
-        })
-        .catch(err => {
-            res.json(err)
-        })
-})
+// app.get('/stats', ({body}, res) => {
+//     // res.sendFile('/Users/clarehenderson/gt/homework/workout-tracker/public/stats.html')
+//     db.Workout.find({})
+//         .then(dbWorkout => {
+//             console.log(dbWorkout)
+//             res.json(dbWorkout)
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
+// })
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);

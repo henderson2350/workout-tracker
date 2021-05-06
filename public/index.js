@@ -1,3 +1,5 @@
+//if there is already an exercise then run getlastworkout... otherwise it's going to say that there are no workouts
+
 init();
 
 async function init() {

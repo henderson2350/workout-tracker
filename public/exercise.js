@@ -1,3 +1,6 @@
+//this is handling all of the changes that the user will see from the data being sent to and from the back end. 
+//everything the user is going to see when they create a new exercise
+
 const workoutTypeSelect = document.querySelector("#type");
 const cardioForm = document.querySelector(".cardio-form");
 const resistanceForm = document.querySelector(".resistance-form");

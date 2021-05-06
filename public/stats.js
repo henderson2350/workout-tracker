@@ -1,3 +1,5 @@
+//this builds a chart
+
 function generatePalette() {
   const arr = [
     '#003f5c',

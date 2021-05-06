@@ -1,3 +1,5 @@
+//converts all the data from the form and turn it into the type of data that can be sent to the mongoose database
+
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
   console.log("Last workout:", lastWorkout);

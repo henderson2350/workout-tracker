@@ -1,3 +1,5 @@
+//this handles posting and adding exercises
+//this function handles the data that we get from the user and sends it to the back end--sends it through the server/routes to the mongo collection
 const API = {
   async getLastWorkout() {
     let res;
