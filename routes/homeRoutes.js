@@ -8,7 +8,7 @@ router.get('/exercise', (req, res) => {
 })
 
 router.get('/stats', (req, res) => {
-    res.sendFile('/Users/clarehenderson/gt/homework/workout-tracker/public/stats.html')
+    res.sendFile('../public/stats.html')
 })
 
 module.exports = router
