@@ -3,9 +3,7 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require('path')
 const db = require('./models')
-const compression = require("compression");
-const app = express();
-app.use(compression());
+
 // const routes = require('routes')
 
 const PORT = process.env.PORT || 3000;
