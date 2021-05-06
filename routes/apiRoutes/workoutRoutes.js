@@ -3,12 +3,27 @@ const { Workout } = require('../../models/index.js')
 const mongojs = require('mongojs')
 
 //creating a workout and sending it to the collection
-router.post('/api/workouts', (req, res) => {
-    Workout.create({})
+router.post('/api/workouts/', (req, res) => {
+    Workout.create(req.body)
         .then((dbworkout) => {
             res.json(dbworkout)
         })
         .catch((error) => {
+            res.json(error)
+        })
+})
+
+router.put('/api/workouts/:id', (req, res) => {
+    console.log(req.body)
+    Workout.findByIdAndUpdate(req.params.id, 
+        {$push: {exercises: req.body}}, 
+        {new: true})
+
+        .then((dbworkout) => {
+            res.json(dbworkout)
+        })
+        .catch((error) => {
+            console.log(error)
             res.json(error)
         })
 })
@@ -24,7 +39,15 @@ router.get('/api/workouts', (req, res) => {
 })
 
 router.get('/api/workouts/range', (req, res) => {
-    Workout.find().sort({day: -1}).limit(7)
+    Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: { $sum: "$exercises.duration"},
+            }
+        }
+    ]
+
+    ).sort({day: -1}).limit(7)
         .then(dbworkout => {
             res.json(dbworkout)
         })

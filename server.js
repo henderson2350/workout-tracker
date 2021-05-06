@@ -7,6 +7,8 @@ const db = require('./models')
 
 const PORT = process.env.PORT || 3000;
 
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+
 // const Workout = require("./models/workoutModel.js");
 // const Exercise = require("./models/exerciseModel.js");
 
@@ -23,7 +25,6 @@ app.use(express.static("public"));
 app.use(require('./routes/homeRoutes'))
 app.use(require('./routes/apiRoutes/workoutRoutes'))
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 // app.get('/exercise', (req, res) => {
 //     res.sendFile('/Users/clarehenderson/gt/homework/workout-tracker/public/exercise.html')
