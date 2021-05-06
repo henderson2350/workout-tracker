@@ -53,7 +53,8 @@ router.get('/api/workouts', (req, res) => {
     Workout.aggregate([
         {
             $addFields: {
-                totalDuration: { $sum: "$exercises.duration"}
+                totalDuration: { $sum: "$exercises.duration"},
+                totalDistance: { $sum: "$exercises.distance"}
             }
         }
     ])
@@ -73,7 +74,6 @@ router.get('/api/workouts/range', (req, res) => {
             }
         }
     ]
-
     ).sort({day: -1}).limit(7)
         .then(dbworkout => {
             reversed = dbworkout.reverse()
