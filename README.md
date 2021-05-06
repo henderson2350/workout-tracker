@@ -12,7 +12,7 @@ This full stack application allows users to track their worltiple exercises to t
 5. [Questions](#questions)
 
 ## Installation
-Visit the deployed link to the project at ____ or download this code to your computer.
+Visit the deployed link to the project at https://stormy-lake-06489.herokuapp.com/?id=609437645af8b10015d758d0 or download this code to your computer.
 
 ## Usage
 Use the easy interface to navigate through the site and add/change workouts and view your statistics.
