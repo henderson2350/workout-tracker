@@ -49,7 +49,8 @@ router.get('/api/workouts/range', (req, res) => {
 
     ).sort({day: -1}).limit(7)
         .then(dbworkout => {
-            res.json(dbworkout)
+            reversed = dbworkout.reverse()
+            res.json(reversed)
         })
         .catch((error) => {
             res.json(error)
