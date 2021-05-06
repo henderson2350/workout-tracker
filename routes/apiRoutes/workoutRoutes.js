@@ -4,6 +4,16 @@ const mongojs = require('mongojs')
 
 
 //creating a workout and sending it to the collection
+// router.get('/', (req, res) => {
+//     Workout.find({})
+//       .then(dbworkout => {
+//           res.json(dbworkout)
+//       })
+//       .catch((error) => {
+//           res.json(error)
+//       })
+// })
+
 router.post('/api/workouts/', (req, res) => {
     Workout.create(req.body)
         .then((dbworkout) => {
@@ -29,8 +39,24 @@ router.put('/api/workouts/:id', (req, res) => {
         })
 })
 
+// router.get('/api/workouts', (req, res) => {
+//     Workout.find({})
+//       .then(dbworkout => {
+//           res.json(dbworkout)
+//       })
+//       .catch((error) => {
+//           res.json(error)
+//       })
+// })
+
 router.get('/api/workouts', (req, res) => {
-    Workout.find({})
+    Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: { $sum: "$exercises.duration"}
+            }
+        }
+    ])
       .then(dbworkout => {
           res.json(dbworkout)
       })
@@ -58,25 +84,6 @@ router.get('/api/workouts/range', (req, res) => {
         })
 })
 
-// router.post('/api/workouts/:id', ({body}, res) => {
-//     Workout.update(
-//         {
-//             _id: req.params.id
-//         },
-//         {
-//             $set({
-//                 exercises: body
-//             })
-//         },
-//         (error, data) => {
-//             if (error) {
-//                 res.send(error)
-//             } else {
-//                 res.send(data)
-//             }
-//         }
-//     )
-// })
 
 router.delete('/api/workouts/:id', (req, res) => {
     // console.log(mongojs.ObjectId(req.params.id))
