@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { Workout } = require('../../models/index.js')
 const mongojs = require('mongojs')
 
+
 //creating a workout and sending it to the collection
 router.post('/api/workouts/', (req, res) => {
     Workout.create(req.body)
